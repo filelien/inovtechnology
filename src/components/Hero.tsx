@@ -9,10 +9,10 @@ export default function Hero() {
   return (
         <div className="pt-20 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors relative overflow-hidden">
           {/* Pattern de carreaux avec bordures épaisses */}
-          <div className="absolute inset-0 opacity-100 pointer-events-none">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <div className="absolute inset-0 pointer-events-none">
+            <svg className="w-full h-full opacity-[0.1] dark:opacity-[0.085]" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="hero-checkerboard" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+                <pattern id="hero-checkerboard-light" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
                   <rect x="3" y="3" width="54" height="54" fill="#d1d5db" stroke="#9ca3af" strokeWidth="3"/>
                   <rect x="63" y="63" width="54" height="54" fill="#d1d5db" stroke="#9ca3af" strokeWidth="3"/>
                 </pattern>
@@ -21,8 +21,8 @@ export default function Hero() {
                   <rect x="63" y="63" width="54" height="54" fill="#4b5563" stroke="#6b7280" strokeWidth="3"/>
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#hero-checkerboard)" className="opacity-[0.1] dark:hidden"/>
-              <rect width="100%" height="100%" fill="url(#hero-checkerboard-dark)" className="hidden dark:block opacity-[0.085]"/>
+              <rect width="100%" height="100%" fill="url(#hero-checkerboard-light)" className="dark:hidden"/>
+              <rect width="100%" height="100%" fill="url(#hero-checkerboard-dark)" className="hidden dark:block"/>
             </svg>
           </div>
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 py-24 relative z-10">
