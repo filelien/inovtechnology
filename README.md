@@ -99,6 +99,29 @@ npm run build        # Construire pour la production
 npm run preview      # Prévisualiser le build de production
 ```
 
+## 🚀 Déploiement
+
+### Vercel
+1. Connectez votre repository GitHub à [Vercel](https://vercel.com)
+2. Vercel détectera automatiquement la configuration dans `vercel.json`
+3. Le déploiement se fera automatiquement à chaque push sur `main`
+
+### Netlify
+1. Connectez votre repository GitHub à [Netlify](https://netlify.com)
+2. Netlify utilisera automatiquement `netlify.toml` pour la configuration
+3. Le fichier `public/_redirects` gère le routing SPA (Single Page Application)
+
+### GitHub Pages
+Si vous utilisez GitHub Pages, vous devrez configurer le base path dans `vite.config.ts` :
+```typescript
+export default defineConfig({
+  base: '/nom-du-repo/',
+  // ...
+});
+```
+
+**Note** : Pour GitHub Pages, assurez-vous que le dossier `dist` est bien généré après `npm run build`.
+
 ## ⚠️ Dépannage
 
 ### Erreur "Le serveur email n'est pas accessible"
