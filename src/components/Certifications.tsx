@@ -1,5 +1,6 @@
 import { Award, CheckCircle, Shield, Star } from 'lucide-react';
 import { useSectionNavigation } from '../hooks/useSectionNavigation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const certifications = [
   {
@@ -60,45 +61,51 @@ const certifications = [
   }
 ];
 
-const achievements = [
-  {
-    icon: Award,
-    title: 'Plus de 50 Certifications',
-    description: 'Notre équipe détient plus de 50 certifications professionnelles reconnues internationalement'
-  },
-  {
-    icon: Star,
-    title: 'Excellence Technique',
-    description: 'Experts certifiés Oracle, AWS, Azure, Kubernetes, et technologies de pointe'
-  },
-  {
-    icon: Shield,
-    title: 'Sécurité Garantie',
-    description: 'Certifications ISO 27001, CISSP, et conformité aux normes internationales'
-  },
-  {
-    icon: CheckCircle,
-    title: 'Formation Continue',
-    description: 'Mise à jour permanente des compétences et veille technologique active'
-  }
-];
-
 export default function Certifications() {
   const { navigateToSection } = useSectionNavigation();
+  const { t } = useLanguage();
+
+  const achievements = [
+    {
+      icon: Award,
+      title: t('certifications.moreThan50'),
+      description: t('certifications.moreThan50Desc')
+    },
+    {
+      icon: Star,
+      title: t('certifications.excellence'),
+      description: t('certifications.excellenceDesc')
+    },
+    {
+      icon: Shield,
+      title: t('certifications.security'),
+      description: t('certifications.securityDesc')
+    },
+    {
+      icon: CheckCircle,
+      title: t('certifications.training'),
+      description: t('certifications.trainingDesc')
+    }
+  ];
 
   return (
-    <section id="certifications" className="py-20 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+    <section id="certifications" className="py-20 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-yellow-500 rounded-full blur-3xl"></div>
+      </div>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-6 py-3 rounded-full mb-6">
+          <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-6 py-3 rounded-full mb-6">
             <Award className="h-6 w-6" />
-            <span className="font-semibold">Certifications Professionnelles</span>
+            <span className="font-semibold">{t('certifications.badge')}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Expertise Certifiée & Reconnue
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('certifications.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Notre équipe d'experts certifiés garantit la qualité et la fiabilité de nos solutions
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            {t('certifications.subtitle')}
           </p>
         </div>
 
@@ -108,15 +115,15 @@ export default function Certifications() {
             return (
               <div
                 key={index}
-                className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 border border-blue-100 hover:shadow-lg transition"
+                className="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 border border-blue-100 dark:border-gray-700 hover:shadow-lg transition"
               >
-                <div className="bg-blue-600 w-14 h-14 rounded-xl flex items-center justify-center mb-4">
+                <div className="bg-blue-600 dark:bg-blue-500 w-14 h-14 rounded-xl flex items-center justify-center mb-4">
                   <Icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   {achievement.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                   {achievement.description}
                 </p>
               </div>
@@ -125,14 +132,14 @@ export default function Certifications() {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Nos Certifications Principales
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            {t('certifications.main')}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-2"
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 transform hover:-translate-y-2"
               >
                 <div className="relative h-32 overflow-hidden">
                   <img
@@ -148,15 +155,15 @@ export default function Certifications() {
 
                 <div className="p-4">
                   <div className="flex items-center space-x-2 mb-2">
-                    <Award className="h-4 w-4 text-blue-600" />
-                    <span className="text-xs font-semibold text-blue-600 uppercase">
+                    <Award className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase">
                       {cert.level}
                     </span>
                   </div>
-                  <h4 className="font-bold text-gray-900 mb-1 leading-tight">
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-1 leading-tight">
                     {cert.name}
                   </h4>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     {cert.category}
                   </p>
                 </div>
@@ -165,18 +172,18 @@ export default function Certifications() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-12 text-white text-center">
+        <div className="bg-gradient-to-br from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 rounded-3xl p-12 text-white text-center">
           <h3 className="text-3xl font-bold mb-4">
-            Votre Projet Mérite l'Excellence
+            {t('certifications.excellenceTitle')}
           </h3>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Confiez votre transformation digitale à une équipe d'experts certifiés et expérimentés
+            {t('certifications.excellenceDesc2')}
           </p>
           <button
             onClick={() => navigateToSection('contact', { subject: 'other' })}
-            className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition font-semibold text-lg shadow-lg inline-flex items-center space-x-2"
+            className="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-300 px-8 py-4 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition font-semibold text-lg shadow-lg inline-flex items-center space-x-2"
           >
-            <span>Discutons de Votre Projet</span>
+            <span>{t('certifications.discuss')}</span>
             <CheckCircle className="h-5 w-5" />
           </button>
         </div>

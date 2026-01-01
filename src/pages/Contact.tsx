@@ -2,8 +2,10 @@ import { Mail, Phone, MapPin, Send, Clock, Globe, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { sendContactEmail, initEmailJS } from '../services/emailService';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
@@ -36,15 +38,15 @@ export default function Contact() {
       const result = await sendContactEmail(formData);
       
       if (result.success) {
-        setSubmitMessage({ type: 'success', text: result.message });
+        setSubmitMessage({ type: 'success', text: t('contact.success') });
         setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
       } else {
-        setSubmitMessage({ type: 'error', text: result.message });
+        setSubmitMessage({ type: 'error', text: t('contact.error') });
       }
     } catch (error) {
       setSubmitMessage({
         type: 'error',
-        text: 'Une erreur inattendue est survenue. Veuillez réessayer plus tard ou nous contacter directement.'
+        text: t('contact.error')
       });
     } finally {
       setIsSubmitting(false);
@@ -69,10 +71,10 @@ export default function Contact() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-              Contactez-Nous
+              {t('contact.title')}
             </h1>
             <p className="text-2xl md:text-3xl text-blue-100 mb-10 leading-relaxed">
-              Discutons de votre projet et découvrons comment INOV TECHNOLOGY peut transformer votre vision en réalité
+              {t('contact.subtitle')}
             </p>
           </div>
         </div>
@@ -85,7 +87,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Informations de Contact
+                  {t('contact.info')}
                 </h3>
 
                 <div className="space-y-6">
@@ -94,11 +96,11 @@ export default function Contact() {
                       <Phone className="h-6 w-6 text-blue-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 mb-1">Téléphone</p>
-                      <a href="tel:+22890000000" className="text-blue-600 hover:text-blue-700 transition">
-                        +228 90 00 00 00
+                      <p className="font-semibold text-gray-900 mb-1">{t('contact.phoneLabel')}</p>
+                      <a href="tel:+22870662821" className="text-blue-600 hover:text-blue-700 transition">
+                        +228 70 66 28 21
                       </a>
-                      <p className="text-sm text-gray-500 mt-1">Lun - Ven: 8h - 18h</p>
+                      <p className="text-sm text-gray-500 mt-1">{t('contact.hoursWeek')}</p>
                     </div>
                   </div>
 
@@ -107,11 +109,11 @@ export default function Contact() {
                       <Mail className="h-6 w-6 text-green-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 mb-1">Email</p>
+                      <p className="font-semibold text-gray-900 mb-1">{t('contact.emailLabel')}</p>
                       <a href="mailto:ynovafrik@gmail.com" className="text-blue-600 hover:text-blue-700 transition">
                         ynovafrik@gmail.com
                       </a>
-                      <p className="text-sm text-gray-500 mt-1">Réponse sous 24h</p>
+                      <p className="text-sm text-gray-500 mt-1">{t('contact.response24h')}</p>
                     </div>
                   </div>
 
@@ -120,11 +122,11 @@ export default function Contact() {
                       <MapPin className="h-6 w-6 text-purple-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 mb-1">Adresse</p>
+                      <p className="font-semibold text-gray-900 mb-1">{t('contact.addressLabel')}</p>
                       <p className="text-gray-600">
-                        Lomé, Togo
+                        {t('footer.location')}
                       </p>
-                      <p className="text-sm text-gray-500 mt-1">Afrique de l'Ouest</p>
+                      <p className="text-sm text-gray-500 mt-1">{t('footer.region')}</p>
                     </div>
                   </div>
 
@@ -133,11 +135,11 @@ export default function Contact() {
                       <Globe className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 mb-1">Présence Mondiale</p>
+                      <p className="font-semibold text-gray-900 mb-1">{t('contact.globalPresence')}</p>
                       <p className="text-gray-600">
-                        180+ pays à travers le monde
+                        {t('contact.countriesWorld')}
                       </p>
-                      <p className="text-sm text-gray-500 mt-1">Services internationaux</p>
+                      <p className="text-sm text-gray-500 mt-1">{t('contact.internationalServices')}</p>
                     </div>
                   </div>
 
@@ -146,14 +148,14 @@ export default function Contact() {
                       <Clock className="h-6 w-6 text-cyan-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 mb-1">Horaires</p>
+                      <p className="font-semibold text-gray-900 mb-1">{t('contact.hours')}</p>
                       <p className="text-gray-600">
-                        Lundi - Vendredi: 8h - 18h
+                        {t('contact.mondayFriday')}
                       </p>
                       <p className="text-gray-600">
-                        Samedi: 9h - 13h
+                        {t('contact.saturday')}
                       </p>
-                      <p className="text-sm text-gray-500 mt-1">Support 24/7 disponible</p>
+                      <p className="text-sm text-gray-500 mt-1">{t('contact.support24')}</p>
                     </div>
                   </div>
                 </div>
@@ -161,32 +163,32 @@ export default function Contact() {
 
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl shadow-lg p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">
-                  Pourquoi Choisir INOV TECHNOLOGY ?
+                  {t('contact.whyChoose')}
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-white mt-2 flex-shrink-0"></div>
-                    <span>15+ ans d'expérience en solutions IT</span>
+                    <span>{t('contact.reason1')}</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-white mt-2 flex-shrink-0"></div>
-                    <span>500+ projets réalisés avec succès</span>
+                    <span>{t('contact.reason2')}</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-white mt-2 flex-shrink-0"></div>
-                    <span>Expertise Oracle, Cloud & Cybersécurité</span>
+                    <span>{t('contact.reason3')}</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-white mt-2 flex-shrink-0"></div>
-                    <span>Équipe d'experts certifiés</span>
+                    <span>{t('contact.reason4')}</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-white mt-2 flex-shrink-0"></div>
-                    <span>Support 24/7 et SLA garantis</span>
+                    <span>{t('contact.reason5')}</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-white mt-2 flex-shrink-0"></div>
-                    <span>Présence dans 180+ pays</span>
+                    <span>{t('contact.reason6')}</span>
                   </li>
                 </ul>
               </div>
@@ -208,7 +210,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="name" className="block text-base font-semibold text-gray-700 mb-3">
-                    Nom Complet *
+                    {t('contact.name')} *
                   </label>
                   <input
                     type="text"
@@ -219,14 +221,14 @@ export default function Contact() {
                     onChange={handleChange}
                     disabled={isSubmitting}
                     className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                    placeholder="Votre nom"
+                    placeholder={t('contact.namePlaceholder')}
                   />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="email" className="block text-base font-semibold text-gray-700 mb-3">
-                      Email *
+                      {t('contact.email')} *
                     </label>
                     <input
                       type="email"
@@ -237,13 +239,13 @@ export default function Contact() {
                       onChange={handleChange}
                       disabled={isSubmitting}
                       className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                      placeholder="votre@email.com"
+                      placeholder={t('contact.email')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="phone" className="block text-base font-semibold text-gray-700 mb-3">
-                      Téléphone *
+                      {t('contact.phone')} *
                     </label>
                     <input
                       type="tel"
@@ -254,14 +256,14 @@ export default function Contact() {
                       onChange={handleChange}
                       disabled={isSubmitting}
                       className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                      placeholder="+228 XX XX XX XX"
+                      placeholder={t('contact.phonePlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="company" className="block text-base font-semibold text-gray-700 mb-3">
-                    Entreprise / Organisation
+                    {t('contact.company')}
                   </label>
                   <input
                     type="text"
@@ -271,13 +273,13 @@ export default function Contact() {
                     onChange={handleChange}
                     disabled={isSubmitting}
                     className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                    placeholder="Nom de votre entreprise"
+                    placeholder={t('contact.companyPlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="subject" className="block text-base font-semibold text-gray-700 mb-3">
-                    Sujet *
+                    {t('contact.subject')} *
                   </label>
                   <select
                     id="subject"
@@ -288,12 +290,12 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   >
-                    <option value="">Sélectionnez un sujet</option>
-                    <option value="web-mobile">Développement Web & Mobile</option>
-                    <option value="cloud">Cloud & Infrastructure</option>
-                    <option value="data">Data Engineering & BI</option>
-                    <option value="security">Cybersécurité</option>
-                    <option value="oracle">Oracle Apex & Database</option>
+                    <option value="">{t('contact.selectSubject')}</option>
+                    <option value="web-mobile">{t('footer.webMobile')}</option>
+                    <option value="cloud">{t('footer.cloud')}</option>
+                    <option value="data">{t('footer.dataEngineering')}</option>
+                    <option value="security">{t('footer.cybersecurity')}</option>
+                    <option value="oracle">{t('footer.oracle')}</option>
                     <option value="erp">ERP / CRM</option>
                     <option value="support">Support & Infogérance</option>
                     <option value="other">Autre</option>
@@ -302,7 +304,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="message" className="block text-base font-semibold text-gray-700 mb-3">
-                    Message *
+                    {t('contact.message')} *
                   </label>
                   <textarea
                     id="message"
@@ -313,7 +315,7 @@ export default function Contact() {
                     disabled={isSubmitting}
                     rows={8}
                     className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
-                    placeholder="Décrivez votre projet ou vos besoins..."
+                    placeholder={t('contact.messagePlaceholder')}
                   ></textarea>
                 </div>
 
@@ -325,18 +327,18 @@ export default function Contact() {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="h-6 w-6 animate-spin" />
-                      <span>Envoi en cours...</span>
+                      <span>{t('contact.sending')}</span>
                     </>
                   ) : (
                     <>
-                      <span>Envoyer le Message</span>
+                      <span>{t('contact.send')}</span>
                       <Send className="h-6 w-6" />
                     </>
                   )}
                 </button>
 
                 <p className="text-sm text-gray-500 text-center">
-                  En soumettant ce formulaire, vous acceptez d'être contacté par INOV TECHNOLOGY concernant votre demande.
+                  {t('contact.formAcceptance')}
                 </p>
               </form>
             </div>

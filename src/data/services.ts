@@ -8,7 +8,7 @@ export const services = [
     description: 'Applications web progressives, sites e-commerce, applications mobiles cross-platform (iOS/Android), interfaces utilisateur modernes et responsives.',
     features: ['React, Vue, Angular', 'React Native, Flutter', 'Progressive Web Apps', 'UI/UX Design'],
     color: 'blue',
-    image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200',
     details: 'Nous développons des applications web et mobiles sur mesure qui offrent une expérience utilisateur exceptionnelle. Nos solutions sont optimisées pour la performance, la sécurité et l\'évolutivité.',
     benefits: [
       'Applications cross-platform performantes',
@@ -26,7 +26,7 @@ export const services = [
     description: 'Conception et gestion de data warehouses, pipelines ETL/ELT, business intelligence, visualisation de données, analytics avancés.',
     features: ['Data Warehouse', 'ETL/ELT Pipelines', 'Power BI, Tableau', 'Big Data Analytics'],
     color: 'green',
-    image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://images.pexels.com/photos/5905903/pexels-photo-5905903.jpeg?auto=compress&cs=tinysrgb&w=1200',
     details: 'Transformez vos données en insights actionnables avec nos solutions de data engineering et business intelligence. Nous construisons des architectures de données robustes et scalables.',
     benefits: [
       'Data warehouses optimisés',
@@ -44,7 +44,7 @@ export const services = [
     description: 'Déploiement Oracle Cloud, AWS, Azure. Architecture cloud-native, conteneurisation Docker/Kubernetes, solutions IaaS/PaaS.',
     features: ['Oracle Cloud', 'AWS, Azure, GCP', 'Docker & Kubernetes', 'Infrastructure as Code'],
     color: 'purple',
-    image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200',
     details: 'Migrez vers le cloud et optimisez votre infrastructure avec nos solutions cloud-native. Nous garantissons haute disponibilité, sécurité et coûts optimisés.',
     benefits: [
       'Migration cloud sans interruption',

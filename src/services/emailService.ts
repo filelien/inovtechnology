@@ -103,18 +103,36 @@ export const sendEmailViaSMTP = async (
     });
 
     if (!response.ok) {
-      throw new Error('Erreur lors de l\'envoi de l\'email');
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Erreur HTTP: ${response.status}`);
     }
 
+    const result = await response.json();
     return {
       success: true,
       message: 'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.'
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Erreur lors de l\'envoi de l\'email:', error);
+    
+    // Messages d'erreur plus spécifiques
+    if (error.message?.includes('Failed to fetch') || error.message?.includes('NetworkError') || error.message?.includes('Network request failed')) {
+      return {
+        success: false,
+        message: 'Le serveur email n\'est pas accessible. Veuillez vérifier que le serveur est démarré (node start-email-server.js) et réessayer.'
+      };
+    }
+    
+    if (error.message?.includes('404') || error.message?.includes('Not Found')) {
+      return {
+        success: false,
+        message: 'Endpoint email non trouvé. Vérifiez la configuration du serveur.'
+      };
+    }
+
     return {
       success: false,
-      message: 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer ou nous contacter directement.'
+      message: error.message || 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer ou nous contacter directement à ynovafrik@gmail.com'
     };
   }
 };

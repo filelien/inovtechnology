@@ -1,8 +1,10 @@
 import { Mail, Phone, MapPin, Send, Clock, Globe, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { sendContactEmail, initEmailJS } from '../services/emailService';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [formData, setFormData] = useState({
@@ -53,15 +55,15 @@ export default function Contact() {
       const result = await sendContactEmail(formData);
       
       if (result.success) {
-        setSubmitMessage({ type: 'success', text: result.message });
+        setSubmitMessage({ type: 'success', text: t('contact.success') });
         setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
       } else {
-        setSubmitMessage({ type: 'error', text: result.message });
+        setSubmitMessage({ type: 'error', text: t('contact.error') });
       }
     } catch (error) {
       setSubmitMessage({
         type: 'error',
-        text: 'Une erreur inattendue est survenue. Veuillez réessayer plus tard ou nous contacter directement.'
+        text: t('contact.error')
       });
     } finally {
       setIsSubmitting(false);
@@ -76,96 +78,102 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Contactez-Nous
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('contact.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discutons de votre projet et découvrons comment INOV TECHNOLOGY peut transformer votre vision en réalité
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            {t('contact.subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Informations de Contact
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                {t('contact.info')}
               </h3>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-xl flex-shrink-0">
-                    <Phone className="h-6 w-6 text-blue-600" />
+                  <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-xl flex-shrink-0">
+                    <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Téléphone</p>
-                    <a href="tel:+22890000000" className="text-blue-600 hover:text-blue-700 transition">
-                      +228 90 00 00 00
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Téléphone</p>
+                    <a href="tel:+22870662821" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition">
+                      +228 70 66 28 21
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Lun - Ven: 8h - 18h</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Lun - Ven: 8h - 18h</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-green-100 p-3 rounded-xl flex-shrink-0">
-                    <Mail className="h-6 w-6 text-green-600" />
+                  <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded-xl flex-shrink-0">
+                    <Mail className="h-6 w-6 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Email</p>
-                    <a href="mailto:ynovafrik@gmail.com" className="text-blue-600 hover:text-blue-700 transition">
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Email</p>
+                    <a href="mailto:ynovafrik@gmail.com" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition">
                       ynovafrik@gmail.com
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Réponse sous 24h</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Réponse sous 24h</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-xl flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-purple-600" />
+                  <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-xl flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Adresse</p>
-                    <p className="text-gray-600">
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Adresse</p>
+                    <p className="text-gray-600 dark:text-gray-300">
                       Lomé, Togo
                     </p>
-                    <p className="text-sm text-gray-500 mt-1">Afrique de l'Ouest</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Afrique de l'Ouest</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-orange-100 p-3 rounded-xl flex-shrink-0">
-                    <Globe className="h-6 w-6 text-orange-600" />
+                  <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-xl flex-shrink-0">
+                    <Globe className="h-6 w-6 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Présence Mondiale</p>
-                    <p className="text-gray-600">
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Présence Mondiale</p>
+                    <p className="text-gray-600 dark:text-gray-300">
                       180+ pays à travers le monde
                     </p>
-                    <p className="text-sm text-gray-500 mt-1">Services internationaux</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Services internationaux</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-cyan-100 p-3 rounded-xl flex-shrink-0">
-                    <Clock className="h-6 w-6 text-cyan-600" />
+                  <div className="bg-cyan-100 dark:bg-cyan-900/30 p-3 rounded-xl flex-shrink-0">
+                    <Clock className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Horaires</p>
-                    <p className="text-gray-600">
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Horaires</p>
+                    <p className="text-gray-600 dark:text-gray-300">
                       Lundi - Vendredi: 8h - 18h
                     </p>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-300">
                       Samedi: 9h - 13h
                     </p>
-                    <p className="text-sm text-gray-500 mt-1">Support 24/7 disponible</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Support 24/7 disponible</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl shadow-lg p-8 text-white">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 rounded-2xl shadow-lg p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">
                 Pourquoi Choisir INOV TECHNOLOGY ?
               </h3>
@@ -199,13 +207,13 @@ export default function Contact() {
           </div>
 
           <div>
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 space-y-6 border border-gray-100 dark:border-gray-700">
               {submitMessage && (
                 <div
                   className={`p-4 rounded-lg ${
                     submitMessage.type === 'success'
-                      ? 'bg-green-50 text-green-800 border border-green-200'
-                      : 'bg-red-50 text-red-800 border border-red-200'
+                      ? 'bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-800'
+                      : 'bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
                   }`}
                 >
                   <p className="font-semibold">{submitMessage.text}</p>
@@ -213,8 +221,8 @@ export default function Contact() {
               )}
 
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Nom Complet *
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  {t('contact.name')} *
                 </label>
                 <input
                   type="text"
@@ -224,15 +232,15 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder="Votre nom"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                  placeholder={t('contact.name')}
                 />
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email *
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {t('contact.email')} *
                   </label>
                   <input
                     type="email"
@@ -242,14 +250,14 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    placeholder="votre@email.com"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                    placeholder={t('contact.email')}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Téléphone *
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {t('contact.phone')} *
                   </label>
                   <input
                     type="tel"
@@ -259,15 +267,15 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    placeholder="+228 XX XX XX XX"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                    placeholder={t('contact.phone')}
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Entreprise / Organisation
+                <label htmlFor="company" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  {t('contact.company')}
                 </label>
                 <input
                   type="text"
@@ -276,14 +284,14 @@ export default function Contact() {
                   value={formData.company}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder="Nom de votre entreprise"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                  placeholder={t('contact.company')}
                 />
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Sujet *
+                <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  {t('contact.subject')} *
                 </label>
                 <select
                   id="subject"
@@ -292,14 +300,14 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
-                  <option value="">Sélectionnez un sujet</option>
-                  <option value="web-mobile">Développement Web & Mobile</option>
-                  <option value="cloud">Cloud & Infrastructure</option>
-                  <option value="data">Data Engineering & BI</option>
-                  <option value="security">Cybersécurité</option>
-                  <option value="oracle">Oracle Apex & Database</option>
+                  <option value="">{t('contact.selectSubject')}</option>
+                  <option value="web-mobile">{t('footer.webMobile')}</option>
+                  <option value="cloud">{t('footer.cloud')}</option>
+                  <option value="data">{t('footer.dataEngineering')}</option>
+                  <option value="security">{t('footer.cybersecurity')}</option>
+                  <option value="oracle">{t('footer.oracle')}</option>
                   <option value="erp">ERP / CRM</option>
                   <option value="support">Support & Infogérance</option>
                   <option value="other">Autre</option>
@@ -307,8 +315,8 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Message *
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  {t('contact.message')} *
                 </label>
                 <textarea
                   id="message"
@@ -318,31 +326,31 @@ export default function Contact() {
                   onChange={handleChange}
                   disabled={isSubmitting}
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder="Décrivez votre projet ou vos besoins..."
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition resize-none disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                  placeholder={t('contact.message')}
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-blue-600 dark:bg-blue-500 text-white px-8 py-4 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition font-semibold text-lg shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-5 w-5 animate-spin" />
-                    <span>Envoi en cours...</span>
+                    <span>{t('contact.sending')}</span>
                   </>
                 ) : (
                   <>
-                    <span>Envoyer le Message</span>
+                    <span>{t('contact.send')}</span>
                     <Send className="h-5 w-5" />
                   </>
                 )}
               </button>
 
-              <p className="text-sm text-gray-500 text-center">
-                En soumettant ce formulaire, vous acceptez d'être contacté par INOV TECHNOLOGY concernant votre demande.
+              <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                {t('contact.formAcceptance')}
               </p>
             </form>
           </div>

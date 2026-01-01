@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Briefcase, MapPin, Clock, ArrowRight, CheckCircle, Users, Award, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const jobOpenings = [
   {
@@ -95,6 +96,15 @@ const jobOpenings = [
 ];
 
 export default function Careers() {
+  const { t } = useLanguage();
+
+  const benefits = [
+    { icon: Award, title: t('careers.continuousTraining'), description: t('careers.continuousTrainingDesc') },
+    { icon: TrendingUp, title: t('careers.careerGrowth'), description: t('careers.careerGrowthDesc') },
+    { icon: Users, title: t('careers.dynamicTeam'), description: t('careers.dynamicTeamDesc') },
+    { icon: MapPin, title: t('careers.flexibility'), description: t('careers.flexibilityDesc') }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -106,10 +116,10 @@ export default function Careers() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Rejoignez Notre Équipe
+              {t('careers.title')}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-              Faites partie d'une équipe passionnée qui transforme le paysage IT en Afrique et dans le monde
+              {t('careers.subtitle')}
             </p>
           </div>
         </div>
@@ -119,19 +129,14 @@ export default function Careers() {
       <section className="py-20 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Pourquoi Nous Rejoindre ?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('careers.whyJoin')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Des avantages compétitifs et un environnement de travail stimulant
+              {t('careers.whyJoinDesc')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: Award, title: 'Formation Continue', description: 'Accès à des formations certifiantes et développement de compétences' },
-              { icon: TrendingUp, title: 'Évolution de Carrière', description: 'Opportunités de croissance et d\'évolution professionnelle' },
-              { icon: Users, title: 'Équipe Dynamique', description: 'Travaillez avec des experts passionnés et collaboratifs' },
-              { icon: MapPin, title: 'Flexibilité', description: 'Télétravail et horaires flexibles pour un meilleur équilibre vie pro/perso' }
-            ].map((benefit, idx) => {
+            {benefits.map((benefit, idx) => {
               const Icon = benefit.icon;
               return (
                 <div
@@ -154,9 +159,9 @@ export default function Careers() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Postes Ouverts</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('careers.openPositions')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez les opportunités de carrière disponibles chez INOV TECHNOLOGY
+              {t('careers.openPositionsDesc')}
             </p>
           </div>
 
@@ -192,7 +197,7 @@ export default function Careers() {
                   </div>
                   <p className="text-gray-600 mb-4 leading-relaxed">{job.description}</p>
                   <div className="mb-6">
-                    <p className="font-semibold text-gray-900 mb-2">Exigences principales:</p>
+                    <p className="font-semibold text-gray-900 mb-2">{t('careers.mainRequirements')}</p>
                     <ul className="space-y-2">
                       {job.requirements.slice(0, 3).map((req, idx) => (
                         <li key={idx} className="flex items-start space-x-2 text-sm text-gray-600">
@@ -206,7 +211,7 @@ export default function Careers() {
                     to={`/careers/${job.id}`}
                     className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
                   >
-                    <span>Postuler</span>
+                    <span>{t('careers.apply')}</span>
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
@@ -220,17 +225,17 @@ export default function Careers() {
       <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Vous Ne Trouvez Pas Votre Poste ?
+            {t('careers.notFindPosition')}
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Envoyez-nous votre candidature spontanée. Nous sommes toujours à la recherche de talents passionnés
+            {t('careers.spontaneous')}
           </p>
           <Link
             to="/contact"
             className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition font-semibold text-lg shadow-lg inline-flex items-center space-x-2"
           >
             <Briefcase className="h-5 w-5" />
-            <span>Candidature Spontanée</span>
+            <span>{t('careers.spontaneousApplication')}</span>
           </Link>
         </div>
       </section>

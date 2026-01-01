@@ -1,125 +1,40 @@
 import { ExternalLink, Calendar, MapPin, Users } from 'lucide-react';
 import { useSectionNavigation } from '../hooks/useSectionNavigation';
+import { useLanguage } from '../contexts/LanguageContext';
+import { getTranslatedProjects } from '../utils/getTranslatedProjects';
+import { useMemo } from 'react';
 
-const projects = [
-  {
-    title: 'Plateforme Nationale de Gestion Administrative',
-    client: 'Gouvernement - Afrique de l\'Ouest',
-    description: 'Système intégré de gestion administrative pour 15 ministères avec Oracle Database, Oracle Apex et infrastructure cloud complète.',
-    technologies: ['Oracle Apex', 'Oracle Cloud', 'PL/SQL', 'Oracle DB'],
-    image: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '18 mois',
-    team: '25 personnes',
-    impact: '500K+ utilisateurs',
-    category: 'Administration Publique',
-    subject: 'oracle'
-  },
-  {
-    title: 'Solution de Microfinance Bancaire',
-    client: 'Institution Financière - UEMOA',
-    description: 'Plateforme complète de gestion de microfinance avec intégration mobile money, reporting BI et conformité bancaire.',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Power BI'],
-    image: 'https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '12 mois',
-    team: '15 personnes',
-    impact: '200K+ clients',
-    category: 'Finance & Banque',
-    subject: 'erp'
-  },
-  {
-    title: 'ERP Multinational Cloud',
-    client: 'Groupe International - 8 Pays',
-    description: 'Déploiement d\'un ERP sur mesure avec modules comptabilité, RH, paie, inventaire sur Oracle Cloud Infrastructure.',
-    technologies: ['Oracle Cloud', 'Java', 'Oracle DB', 'Docker'],
-    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '24 mois',
-    team: '30 personnes',
-    impact: '8 pays, 2000+ utilisateurs',
-    category: 'ERP & Gestion',
-    subject: 'erp'
-  },
-  {
-    title: 'Data Warehouse & Analytics BI',
-    client: 'ONG Internationale',
-    description: 'Construction d\'un data warehouse centralisé avec pipelines ETL, dashboards interactifs et analyses prédictives.',
-    technologies: ['Python', 'Apache Airflow', 'PostgreSQL', 'Tableau'],
-    image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '10 mois',
-    team: '12 personnes',
-    impact: '50M+ données',
-    category: 'Data & Analytics',
-    subject: 'data'
-  },
-  {
-    title: 'Application Mobile E-commerce',
-    client: 'Retailer - Afrique de l\'Ouest',
-    description: 'Application mobile e-commerce cross-platform avec paiement mobile money, livraison tracking et gestion stocks.',
-    technologies: ['React Native', 'Node.js', 'MongoDB', 'AWS'],
-    image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '8 mois',
-    team: '10 personnes',
-    impact: '100K+ téléchargements',
-    category: 'Mobile & E-commerce',
-    subject: 'web-mobile'
-  },
-  {
-    title: 'Infrastructure Cloud Sécurisée',
-    client: 'Banque Régionale',
-    description: 'Migration complète vers cloud avec architecture hautement disponible, sécurité renforcée et conformité bancaire.',
-    technologies: ['Oracle Cloud', 'Kubernetes', 'Terraform', 'Security'],
-    image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '14 mois',
-    team: '20 personnes',
-    impact: '99.99% uptime',
-    category: 'Cloud & Infrastructure',
-    subject: 'cloud'
-  },
-  {
-    title: 'Portail Éducatif National',
-    client: 'Ministère de l\'Éducation',
-    description: 'Plateforme d\'e-learning nationale avec gestion des cours, évaluations en ligne, suivi pédagogique et analytics.',
-    technologies: ['Vue.js', 'Laravel', 'MySQL', 'AWS'],
-    image: 'https://images.pexels.com/photos/1370296/pexels-photo-1370296.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '16 mois',
-    team: '18 personnes',
-    impact: '1M+ étudiants',
-    category: 'Éducation',
-    subject: 'other'
-  },
-  {
-    title: 'Système de Santé Digitalisé',
-    client: 'Réseau Hospitalier',
-    description: 'Dossier médical électronique, gestion hospitalière, télémédecine et analyse de données de santé.',
-    technologies: ['React', '.NET', 'SQL Server', 'Azure'],
-    image: 'https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=800',
-    duration: '20 mois',
-    team: '22 personnes',
-    impact: '50+ hôpitaux',
-    category: 'Santé',
-    subject: 'other'
-  }
-];
+// Note: Les projets sont maintenant chargés dynamiquement via getTranslatedProjects
+// Ce composant affiche les 6 premiers projets sur la page d'accueil
 
 export default function Projects() {
   const { navigateToSection } = useSectionNavigation();
+  const { t } = useLanguage();
+  const allProjects = useMemo(() => getTranslatedProjects(t), [t]);
+  const projects = allProjects.slice(0, 6); // Afficher les 6 premiers projets sur la page d'accueil
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+    <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-green-500 rounded-full blur-3xl"></div>
+      </div>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Projets Réalisés avec Succès
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('projects.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Plus de 500 projets déployés avec succès à travers le monde, des solutions qui transforment les organisations
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            {t('projects.subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
-              key={index}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-1"
+              key={project.id || index}
+              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 transform hover:-translate-y-1"
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -129,7 +44,7 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 <div className="absolute top-4 right-4">
-                  <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
                     {project.category}
                   </span>
                 </div>
@@ -144,41 +59,41 @@ export default function Projects() {
               </div>
 
               <div className="p-6">
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                   {project.description}
                 </p>
 
-                <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b">
+                <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-1">
-                      <Calendar className="h-4 w-4 text-blue-600" />
+                      <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <p className="text-xs font-semibold text-gray-900">{project.duration}</p>
-                    <p className="text-xs text-gray-500">Durée</p>
+                    <p className="text-xs font-semibold text-gray-900 dark:text-white">{project.duration}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{t('projects.duration')}</p>
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-1">
-                      <Users className="h-4 w-4 text-green-600" />
+                      <Users className="h-4 w-4 text-green-600 dark:text-green-400" />
                     </div>
-                    <p className="text-xs font-semibold text-gray-900">{project.team}</p>
-                    <p className="text-xs text-gray-500">Équipe</p>
+                    <p className="text-xs font-semibold text-gray-900 dark:text-white">{project.team}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{t('projects.team')}</p>
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-1">
-                      <MapPin className="h-4 w-4 text-purple-600" />
+                      <MapPin className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                     </div>
-                    <p className="text-xs font-semibold text-gray-900">{project.impact}</p>
-                    <p className="text-xs text-gray-500">Impact</p>
+                    <p className="text-xs font-semibold text-gray-900 dark:text-white">{project.impact}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{t('projects.impact')}</p>
                   </div>
                 </div>
 
                 <div className="mb-4">
-                  <p className="text-xs font-semibold text-gray-500 uppercase mb-2">Technologies</p>
+                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-2">{t('projects.technologies')}</p>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, idx) => (
+                    {project.technologies.slice(0, 3).map((tech, idx) => (
                       <span
                         key={idx}
-                        className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium"
+                        className="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-medium"
                       >
                         {tech}
                       </span>
@@ -188,9 +103,9 @@ export default function Projects() {
 
                 <button
                   onClick={() => navigateToSection('contact', { subject: project.subject })}
-                  className="w-full bg-gray-100 hover:bg-blue-600 text-gray-700 hover:text-white px-4 py-3 rounded-lg transition font-semibold flex items-center justify-center space-x-2 group"
+                  className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-blue-600 dark:hover:bg-blue-500 text-gray-700 dark:text-gray-200 hover:text-white px-4 py-3 rounded-lg transition font-semibold flex items-center justify-center space-x-2 group"
                 >
-                  <span>Voir les détails</span>
+                  <span>{t('projects.viewDetails')}</span>
                   <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
@@ -199,12 +114,12 @@ export default function Projects() {
         </div>
 
         <div className="mt-12 text-center">
-          <button
-            onClick={() => navigateToSection('contact')}
-            className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg shadow-lg"
+          <a
+            href="/projects"
+            className="bg-blue-600 dark:bg-blue-500 text-white px-8 py-4 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition font-semibold text-lg shadow-lg inline-block"
           >
-            Voir Tous Nos Projets
-          </button>
+            {t('projects.viewAll')}
+          </a>
         </div>
       </div>
     </section>

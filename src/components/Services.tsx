@@ -1,111 +1,112 @@
 import { Smartphone, Globe, Database, Cloud, Shield, LineChart, Wrench, Users, Code2, Layers, Server, Lock } from 'lucide-react';
 import { useSectionNavigation } from '../hooks/useSectionNavigation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const services = [
   {
     icon: Smartphone,
-    title: 'Développement Web & Mobile',
-    description: 'Applications web progressives, sites e-commerce, applications mobiles cross-platform (iOS/Android), interfaces utilisateur modernes et responsives.',
-    features: ['React, Vue, Angular', 'React Native, Flutter', 'Progressive Web Apps', 'UI/UX Design'],
+    titleKey: 'services.webmobile.title',
+    descriptionKey: 'services.webmobile.description',
+    featuresKey: 'services.webmobile.features',
     color: 'blue',
     image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'web-mobile'
   },
   {
     icon: Database,
-    title: 'Data Engineering & BI',
-    description: 'Conception et gestion de data warehouses, pipelines ETL/ELT, business intelligence, visualisation de données, analytics avancés.',
-    features: ['Data Warehouse', 'ETL/ELT Pipelines', 'Power BI, Tableau', 'Big Data Analytics'],
+    titleKey: 'services.dataengineering.title',
+    descriptionKey: 'services.dataengineering.description',
+    featuresKey: 'services.dataengineering.features',
     color: 'green',
     image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'data'
   },
   {
     icon: Cloud,
-    title: 'Cloud & Infrastructure',
-    description: 'Déploiement Oracle Cloud, AWS, Azure. Architecture cloud-native, conteneurisation Docker/Kubernetes, solutions IaaS/PaaS.',
-    features: ['Oracle Cloud', 'AWS, Azure, GCP', 'Docker & Kubernetes', 'Infrastructure as Code'],
+    titleKey: 'services.cloudinfrastructure.title',
+    descriptionKey: 'services.cloudinfrastructure.description',
+    featuresKey: 'services.cloudinfrastructure.features',
     color: 'purple',
     image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'cloud'
   },
   {
     icon: Shield,
-    title: 'Cybersécurité',
-    description: 'Audits de sécurité, protection contre les menaces, conformité RGPD, sécurisation des infrastructures et applications.',
-    features: ['Audit Sécurité', 'Protection DDoS', 'Conformité RGPD', 'Pentest & Monitoring'],
+    titleKey: 'services.cybersecurity.title',
+    descriptionKey: 'services.cybersecurity.description',
+    featuresKey: 'services.cybersecurity.features',
     color: 'red',
     image: 'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'security'
   },
   {
     icon: Code2,
-    title: 'Développement Oracle Apex',
-    description: 'Expertise Oracle Apex pour applications d\'entreprise rapides et sécurisées. Développement de solutions métier personnalisées.',
-    features: ['Oracle Apex', 'PL/SQL Expert', 'Forms & Reports', 'Integration SOA'],
+    titleKey: 'services.oracleapex.title',
+    descriptionKey: 'services.oracleapex.description',
+    featuresKey: 'services.oracleapex.features',
     color: 'orange',
     image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'oracle'
   },
   {
     icon: Layers,
-    title: 'DevOps & CI/CD',
-    description: 'Automatisation des déploiements, intégration continue, orchestration, monitoring et observabilité des systèmes.',
-    features: ['Jenkins, GitLab CI', 'Terraform, Ansible', 'Prometheus, Grafana', 'Automatisation'],
+    titleKey: 'services.devops.title',
+    descriptionKey: 'services.devops.description',
+    featuresKey: 'services.devops.features',
     color: 'teal',
     image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'support'
   },
   {
     icon: Server,
-    title: 'Administration Bases de Données',
-    description: 'Administration Oracle, PostgreSQL, MySQL, MongoDB. Optimisation, sauvegarde, haute disponibilité, migration.',
-    features: ['Oracle DBA', 'PostgreSQL, MySQL', 'Performance Tuning', 'Backup & Recovery'],
+    titleKey: 'services.databaseadmin.title',
+    descriptionKey: 'services.databaseadmin.description',
+    featuresKey: 'services.databaseadmin.features',
     color: 'cyan',
     image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'oracle'
   },
   {
     icon: Wrench,
-    title: 'Infogérance & Support',
-    description: 'Maintenance applicative, support 24/7, supervision des systèmes, gestion de parc IT, helpdesk, SLA garantis.',
-    features: ['Support 24/7', 'Monitoring Proactif', 'Maintenance Préventive', 'SLA Personnalisés'],
+    titleKey: 'services.support.title',
+    descriptionKey: 'services.support.description',
+    featuresKey: 'services.support.features',
     color: 'gray',
     image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'support'
   },
   {
     icon: LineChart,
-    title: 'Conseil & Transformation Digitale',
-    description: 'Accompagnement stratégique, audit IT, gouvernance, roadmap digitale, formation des équipes, transfert de compétences.',
-    features: ['Audit & Conseil', 'Stratégie IT', 'Formation Équipes', 'Change Management'],
+    titleKey: 'services.consulting.title',
+    descriptionKey: 'services.consulting.description',
+    featuresKey: 'services.consulting.features',
     color: 'yellow',
     image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'other'
   },
   {
     icon: Users,
-    title: 'Solutions ERP/CRM Métier',
-    description: 'Développement et déploiement d\'ERP, CRM, solutions comptables, paie, microfinance, e-commerce personnalisés.',
-    features: ['ERP Sur Mesure', 'CRM & Sales', 'Fintech Solutions', 'E-commerce'],
+    titleKey: 'services.erpcrm.title',
+    descriptionKey: 'services.erpcrm.description',
+    featuresKey: 'services.erpcrm.features',
     color: 'pink',
     image: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'erp'
   },
   {
     icon: Lock,
-    title: 'Conformité & Gouvernance',
-    description: 'Mise en conformité RGPD, ISO 27001, audits, politiques de sécurité, documentation, plan de continuité d\'activité.',
-    features: ['RGPD/ISO 27001', 'Audit Conformité', 'PCA/PRA', 'Documentation'],
+    titleKey: 'services.compliance.title',
+    descriptionKey: 'services.compliance.description',
+    featuresKey: 'services.compliance.features',
     color: 'slate',
     image: 'https://images.pexels.com/photos/6802049/pexels-photo-6802049.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'security'
   },
   {
     icon: Globe,
-    title: 'Migration & Modernisation',
-    description: 'Migration vers le cloud, modernisation d\'applications legacy, refonte architecturale, migration bases de données.',
-    features: ['Cloud Migration', 'Legacy Modernization', 'Re-architecture', 'Zero Downtime'],
+    titleKey: 'services.migration.title',
+    descriptionKey: 'services.migration.description',
+    featuresKey: 'services.migration.features',
     color: 'blue',
     image: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800',
     subject: 'cloud'
@@ -128,16 +129,28 @@ const colorClasses: Record<string, { bg: string; text: string; hover: string }> 
 
 export default function Services() {
   const { navigateToSection } = useSectionNavigation();
+  const { t } = useLanguage();
+
+  const getTranslatedFeatures = (featuresKey: string): string[] => {
+    const features = t(featuresKey);
+    return features.split('|').map(f => f.trim());
+  };
 
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="services" className="py-20 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-colors relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Nos Services IT Complets
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('services.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Une gamme complète de services IT pour accompagner votre transformation digitale de A à Z
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -149,32 +162,32 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-2"
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 transform hover:-translate-y-2"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={service.image}
-                    alt={service.title}
+                    alt={service.titleKey ? t(service.titleKey) : ''}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className={`absolute bottom-4 left-4 ${colors.bg} p-3 rounded-xl`}>
-                    <Icon className={`h-8 w-8 ${colors.text}`} />
+                  <div className={`absolute bottom-4 left-4 ${colors.bg} dark:bg-gray-700 p-3 rounded-xl`}>
+                    <Icon className={`h-8 w-8 ${colors.text} dark:text-white`} />
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {service.title}
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {service.titleKey ? t(service.titleKey) : ''}
                   </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {service.description}
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                    {service.descriptionKey ? t(service.descriptionKey) : ''}
                   </p>
 
                   <div className="space-y-2 mb-4">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-sm text-gray-500">
-                        <div className={`w-1.5 h-1.5 rounded-full ${colors.bg} mr-2`}></div>
+                    {(service.featuresKey ? getTranslatedFeatures(service.featuresKey) : []).map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                        <div className={`w-1.5 h-1.5 rounded-full ${colors.bg} dark:bg-gray-600 mr-2`}></div>
                         {feature}
                       </div>
                     ))}
@@ -184,7 +197,7 @@ export default function Services() {
                     onClick={() => navigateToSection('contact', { subject: service.subject })}
                     className={`w-full ${colors.bg} ${colors.text} ${colors.hover} group-hover:text-white px-4 py-2 rounded-lg transition font-semibold`}
                   >
-                    En savoir plus
+                    {t('services.learnMore')}
                   </button>
                 </div>
               </div>

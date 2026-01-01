@@ -190,6 +190,54 @@ export const projects = [
       'Amélioration des soins',
       'Conformité santé 100%'
     ]
+  },
+  {
+    id: 'koogwe-mobilite',
+    title: 'KOOGWE - Plateforme de Mobilité Intelligente',
+    client: 'Guyane Française',
+    description: 'Application mobile complète de transport et mobilité urbaine pour la Guyane française. Connecte les passagers, les chauffeurs et les entreprises avec une expérience utilisateur moderne, fonctionnalités avancées de réservation, suivi en temps réel, et gestion intelligente des trajets.',
+    technologies: ['Flutter', 'Laravel', 'Supabase', 'AWS'],
+    image: '/koogwe_icon.png',
+    duration: '10 mois',
+    team: '12 personnes',
+    impact: '50K+ utilisateurs',
+    category: 'Mobile & Transport',
+    images: [
+      '/koogwe_icon.png',
+      'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200'
+    ],
+    details: 'Développement d\'une application mobile complète de transport et mobilité urbaine pour la Guyane française. Application Flutter cross-platform connectant passagers, chauffeurs et entreprises. Backend Laravel robuste, base de données Supabase pour la scalabilité, déploiement AWS. Fonctionnalités avancées : réservation en temps réel, suivi GPS, gestion intelligente des trajets, système de paiement intégré, et analytics pour optimiser les performances.',
+    results: [
+      '50K+ utilisateurs actifs en Guyane française',
+      'Expérience utilisateur moderne et intuitive avec Flutter',
+      'Backend Laravel performant et scalable',
+      'Suivi en temps réel opérationnel avec Supabase'
+    ]
+  },
+  {
+    id: 'oracle-audit-llm',
+    title: 'Intelligent Oracle Database Audit & Analysis System',
+    client: 'Entreprise Internationale',
+    description: 'Système intelligent d\'audit et d\'analyse de base de données Oracle utilisant l\'IA. Backend Python convertissant le langage naturel en SQL via LLMs, pipelines ETL automatisés Oracle vers MongoDB avec indexation et audit, services FastAPI dockerisés, et interface conversationnelle React pour analyses SQL.',
+    technologies: ['Python', 'Oracle', 'LLM', 'FastMCP', 'Docker', 'MongoDB', 'React', 'FastAPI'],
+    image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    duration: '8 mois',
+    team: '10 personnes',
+    impact: 'Réduction 70% charge manuelle',
+    category: 'Data & Analytics',
+    images: [
+      'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1200'
+    ],
+    details: 'Développement d\'un système intelligent d\'audit et d\'analyse de base de données Oracle. Backend Python convertissant le langage naturel en SQL via LLMs, pipelines ETL automatisés Oracle vers MongoDB avec indexation et audit, implémentation CI/CD, microservices dockerisés, services FastAPI, et interface conversationnelle React pour analyses SQL.',
+    results: [
+      'Automatisation complète de l\'audit Oracle',
+      'Réduction de 70% de la charge de travail manuelle',
+      'Analyse de données automatisée',
+      'Interface conversationnelle pour insights SQL'
+    ]
   }
 ];
 

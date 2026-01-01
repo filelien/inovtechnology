@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Clock } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const blogPosts = [
   {
@@ -71,6 +72,7 @@ const blogPosts = [
 ];
 
 export default function Blog() {
+  const { t } = useLanguage();
   const featuredPost = blogPosts.find(p => p.featured);
   const regularPosts = blogPosts.filter(p => !p.featured);
 
@@ -85,10 +87,10 @@ export default function Blog() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Blog & Actualités
+              {t('blog.title')}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-              Restez informé des dernières tendances IT, conseils pratiques et actualités de INOV TECHNOLOGY
+              {t('blog.subtitle')}
             </p>
           </div>
         </div>
@@ -135,7 +137,7 @@ export default function Blog() {
                     to={`/blog/${featuredPost.id}`}
                     className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold"
                   >
-                    <span>Lire l'article</span>
+                    <span>{t('blog.readArticle')}</span>
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
@@ -148,7 +150,7 @@ export default function Blog() {
       {/* Blog Posts Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">Articles Récents</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-12">{t('blog.recentArticles')}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
               <Link
@@ -199,19 +201,19 @@ export default function Blog() {
       <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Restez Informé
+            {t('blog.stayInformed')}
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Abonnez-vous à notre newsletter pour recevoir les derniers articles et actualités directement dans votre boîte mail
+            {t('blog.newsletter')}
           </p>
           <div className="max-w-md mx-auto flex gap-4">
             <input
               type="email"
-              placeholder="Votre adresse email"
+              placeholder={t('blog.emailPlaceholder')}
               className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
             />
             <button className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition font-semibold">
-              S'abonner
+              {t('blog.subscribe')}
             </button>
           </div>
         </div>

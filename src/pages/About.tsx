@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Award, Users, Globe, TrendingUp, Target, Heart, ArrowRight, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -13,10 +15,10 @@ export default function About() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              À Propos de INOV TECHNOLOGY
+              {t('about.title')}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-              Leader en solutions IT complètes en Afrique et dans le monde depuis plus de 15 ans
+              {t('about.subtitle')}
             </p>
           </div>
         </div>
@@ -27,20 +29,15 @@ export default function About() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Notre Histoire</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('about.history')}</h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-4">
-                Fondée en 2009, INOV TECHNOLOGY est née de la vision de transformer le paysage IT en Afrique. 
-                Nous avons commencé avec une petite équipe passionnée et sommes devenus un leader reconnu 
-                dans le développement de solutions IT complètes.
+                {t('about.historyText1')}
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-4">
-                Aujourd'hui, nous opérons dans plus de 180 pays, avec une équipe de plus de 200 experts 
-                certifiés. Nous avons livré plus de 500 projets avec succès, transformant les organisations 
-                et améliorant la vie de millions de personnes.
+                {t('about.historyText2')}
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Notre mission est de démocratiser l'accès aux technologies de pointe en Afrique et de 
-                permettre aux organisations de réaliser leur plein potentiel grâce à des solutions IT innovantes.
+                {t('about.historyText3')}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -73,9 +70,9 @@ export default function About() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Nos Valeurs</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('about.values')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Les principes qui guident notre travail et notre relation avec nos clients
+              {t('about.valuesDesc')}
             </p>
           </div>
 
@@ -124,7 +121,7 @@ export default function About() {
       <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Nos Réalisations</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('about.achievements')}</h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Des chiffres qui témoignent de notre expertise et de notre impact
             </p>
@@ -157,7 +154,7 @@ export default function About() {
       <section className="py-20 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Notre Équipe</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('about.team')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Une équipe d'experts passionnés et certifiés, dédiée à votre succès
             </p>
@@ -220,7 +217,7 @@ export default function About() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Pourquoi Nous Choisir ?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('about.whyChoose')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Les avantages qui font de nous le partenaire idéal pour votre transformation digitale
             </p>

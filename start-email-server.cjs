@@ -1,5 +1,5 @@
 // Serveur backend pour l'envoi d'emails via SMTP Gmail
-// Lancez avec: node start-email-server.js
+// Lancez avec: node start-email-server.cjs
 
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // true pour 465, false pour autres ports
   auth: {
-    user: 'ynovafrik@gmail.com',
+    user: 'filelien08@gmail.com',
     pass: 'zwya hjhj oher zvbx' // Mot de passe d'application Gmail
   }
 });
@@ -30,7 +30,9 @@ transporter.verify(function (error, success) {
     console.log('   3. Vous avez créé un mot de passe d\'application sur https://myaccount.google.com/apppasswords\n');
   } else {
     console.log('✅ Serveur SMTP prêt à envoyer des emails');
-    console.log('📧 Les emails seront envoyés à: ynovafrik@gmail.com\n');
+    console.log('📧 Compte SMTP: filelien08@gmail.com');
+    console.log('📧 Adresse d\'envoi (FROM): ynovafrik@gmail.com');
+    console.log('📧 Destinataire (TO): ynovafrik@gmail.com\n');
   }
 });
 
@@ -47,7 +49,7 @@ app.post('/api/send-email', async (req, res) => {
     }
 
     const mailOptions = {
-      from: 'ynovafrik@gmail.com',
+      from: 'ynovafrik@gmail.com', // Adresse d'envoi (FROM)
       to: 'ynovafrik@gmail.com', // Tous les emails vont vers ynovafrik@gmail.com
       replyTo: from, // Permet de répondre directement à l'expéditeur
       subject: subject,

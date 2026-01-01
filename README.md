@@ -1,133 +1,120 @@
-# YNOV-Afrik Website
+# INOV TECHNOLOGY - Site Web
 
-Site web professionnel pour YNOV-Afrik - Leader en solutions IT complètes en Afrique.
+Site web professionnel pour INOV TECHNOLOGY avec support multilingue, mode sombre/clair, et système de messagerie.
 
-## 🌍 À Propos
+## 🚀 Démarrage Rapide
 
-YNOV-Afrik est une entreprise leader en solutions IT avec une présence dans plus de 180 pays. Nous offrons une gamme complète de services incluant :
+### Prérequis
+- Node.js (v18 ou supérieur)
+- npm ou yarn
 
-- **Développement Web & Mobile** - Applications sur mesure React, Vue, Angular, React Native
-- **Data Engineering & BI** - Data warehouses, ETL, analytics, visualisation
-- **Cloud & Infrastructure** - Oracle Cloud, AWS, Azure, Kubernetes, DevOps
-- **Cybersécurité** - Audits, protection, conformité RGPD/ISO 27001
-- **Oracle Apex & Database** - Expertise Oracle, PL/SQL, administration
-- **ERP/CRM** - Solutions métier personnalisées
-- **Support & Infogérance** - Support 24/7, maintenance, SLA
+### Installation
 
-## 🚀 Technologies Utilisées
+```bash
+# Installer les dépendances
+npm install
+```
 
-- React 18 avec TypeScript
-- Vite (Build Tool)
+### Configuration Email
+
+1. **Créer le fichier `.env`** à la racine du projet :
+```env
+VITE_USE_BACKEND_EMAIL=true
+VITE_EMAIL_API_ENDPOINT=http://localhost:3000/api/send-email
+VITE_CONTACT_EMAIL=ynovafrik@gmail.com
+```
+
+2. **Installer les dépendances du serveur email** (si nécessaire) :
+```bash
+npm install express nodemailer cors
+```
+
+### Démarrage
+
+1. **Démarrer le serveur email** (Terminal 1) :
+```bash
+node start-email-server.cjs
+```
+
+2. **Démarrer le frontend** (Terminal 2) :
+```bash
+npm run dev
+```
+
+Le site sera accessible sur `http://localhost:5173`
+
+## 📧 Système de Messagerie
+
+Le système utilise un serveur backend SMTP pour l'envoi d'emails.
+
+- **Serveur SMTP** : Gmail (smtp.gmail.com:587)
+- **Email de destination** : ynovafrik@gmail.com
+- **Configuration** : Voir `start-email-server.cjs`
+
+**Important** : Le serveur email doit être démarré avant d'utiliser le formulaire de contact.
+
+## 🌍 Langues Supportées
+
+- Français (fr)
+- English (en)
+- Español (es)
+- Português (pt)
+- العربية (ar)
+- Kréyòl Gwiyan (cr) - Fallback vers le français
+
+## 🎨 Thèmes
+
+- Mode clair
+- Mode sombre (toggle dans le footer)
+
+## 📁 Structure du Projet
+
+```
+├── src/
+│   ├── components/     # Composants React
+│   ├── pages/         # Pages du site
+│   ├── contexts/      # Contextes (Langue, Thème)
+│   ├── data/          # Données (projets, services)
+│   ├── services/      # Services (email)
+│   └── utils/         # Utilitaires
+├── public/            # Assets statiques
+├── start-email-server.cjs  # Serveur backend email
+└── .env              # Variables d'environnement
+```
+
+## 🔧 Technologies
+
+- React 18
+- TypeScript
+- Vite
 - Tailwind CSS
-- Lucide React (Icons)
-- Design moderne et responsive
+- React Router
+- Nodemailer (backend)
+
+## 📝 Scripts Disponibles
+
+```bash
+npm run dev          # Démarrer le serveur de développement
+npm run build        # Construire pour la production
+npm run preview      # Prévisualiser le build de production
+```
+
+## ⚠️ Dépannage
+
+### Erreur "Le serveur email n'est pas accessible"
+**Solution** : Démarrez le serveur email avec `node start-email-server.cjs` avant d'utiliser le formulaire de contact.
+
+### Erreur SMTP
+Vérifiez que :
+- Le mot de passe d'application Gmail est correct
+- La validation en 2 étapes est activée
+- Le serveur email est démarré
 
 ## 📞 Contact
 
-- **Téléphone**: +228 90 00 00 00
-- **Email**: ynovafrik@gmail.com
-- **Localisation**: Lomé, Togo - Afrique de l'Ouest
-- **Présence**: 180+ pays dans le monde
+- Email : ynovafrik@gmail.com
+- Téléphone : +228 70 66 28 21
 
-## 🏆 Expertise
+## 📄 Licence
 
-- 15+ ans d'expérience
-- 500+ projets réalisés
-- 50+ certifications professionnelles (Oracle, AWS, Azure, ISO 27001, CISSP, CKA)
-- Équipe d'experts certifiés
-- 98% de satisfaction client
-
-## 🎯 Secteurs d'Activité
-
-- Administrations Publiques
-- Banques & Finance
-- Microfinance & Fintech
-- ONG & Organisations Internationales
-- E-commerce & Retail
-- Santé & Éducation
-- Télécommunications
-- Assurances
-
-## 💻 Développement
-
-```bash
-# Installation des dépendances
-npm install
-
-# Lancer le serveur de développement
-npm run dev
-
-# Build pour la production
-npm run build
-
-# Prévisualisation du build
-npm run preview
-
-# Vérification TypeScript
-npm run typecheck
-
-# Linter
-npm run lint
-```
-
-## 🌟 Fonctionnalités du Site
-
-- Navigation fluide avec smooth scrolling
-- Design moderne et professionnel
-- Responsive sur tous les appareils
-- Animations et micro-interactions
-- Sections complètes :
-  - Hero avec statistiques
-  - Services détaillés (12 services)
-  - Expertise technique (6 domaines)
-  - Présence mondiale
-  - Certifications professionnelles
-  - Portfolio de projets (8 projets majeurs)
-  - Technologies maîtrisées (32+ technologies)
-  - Formulaire de contact
-  - Footer complet
-
-## 📱 Responsive Design
-
-Le site est entièrement responsive et optimisé pour :
-- Desktop (1920px+)
-- Laptop (1024px - 1919px)
-- Tablet (768px - 1023px)
-- Mobile (< 768px)
-
-## 🎨 Design System
-
-- Police: Inter, San Francisco, Segoe UI
-- Couleurs principales: Bleu (#2563eb), Vert, Orange, Purple
-- Espacement: Système 8px
-- Bordures: Arrondies modernes
-- Ombres: Subtiles et élégantes
-- Dégradés: Utilisation stratégique
-
-## 🔒 Sécurité & Conformité
-
-- Code sécurisé selon les meilleures pratiques
-- Pas d'exposition de données sensibles
-- Validation des formulaires
-- Protection CSRF future
-- Conformité RGPD
-
-## 📈 Performance
-
-- Build optimisé avec Vite
-- Lazy loading des images
-- Code splitting automatique
-- CSS minifié
-- JavaScript optimisé
-
-## 🌐 SEO
-
-- Meta tags optimisés
-- Structure sémantique HTML5
-- Descriptions et keywords
-- Images avec alt text
-- URLs propres
-
----
-
-© 2024 YNOV-Afrik. Tous droits réservés.
+Tous droits réservés - INOV TECHNOLOGY
