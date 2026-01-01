@@ -63,7 +63,7 @@ export default function Technologies() {
               <Link
                 key={index}
                 to="/technologies"
-                className="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border border-gray-100 dark:border-gray-700"
+                className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-double hover:shadow-double-hover transition-all duration-300 transform hover:-translate-y-1 group border border-gray-200/50 dark:border-gray-700/50"
               >
                 <div className="flex items-center space-x-4 mb-6">
                   <div className={`bg-gradient-to-br ${colorClasses[category.color as keyof typeof colorClasses]} p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>

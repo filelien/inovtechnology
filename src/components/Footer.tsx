@@ -56,25 +56,14 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-10">
             {/* Company Info - Compact & Modern */}
-            <div className="space-y-5">
+            <div className="space-y-4">
               <Link to="/" className="inline-block group">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="flex-shrink-0 relative">
-                    <div className="absolute inset-0 bg-blue-600 rounded-xl blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
-                    <div className="relative z-10 bg-gray-800 p-2 rounded-xl">
-                      <Logo className="h-8 w-8" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold group-hover:text-blue-400 transition-colors">
-                      INOV TECHNOLOGY
-                    </h3>
-                    <p className="text-xs text-gray-400">Excellence IT & Data</p>
-                  </div>
-                </div>
+                <h3 className="text-lg md:text-xl font-extrabold group-hover:text-blue-400 transition-colors leading-tight tracking-tight mb-2">
+                  INOV TECHNOLOGY
+                </h3>
               </Link>
               
-              <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+              <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
                 {t('footer.description')}
               </p>
               
@@ -115,7 +104,7 @@ export default function Footer() {
             </div>
 
             {/* Services - Clean & Aligned */}
-            <div>
+            <div className="mt-1">
               <h4 className="text-base font-bold mb-5 text-white relative pb-2.5 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-gradient-to-r after:from-blue-600 after:to-purple-600">
                 {t('footer.services')}
               </h4>
@@ -281,6 +270,20 @@ export default function Footer() {
                   </>
                 )}
               </button>
+            </div>
+          </div>
+
+          {/* Logo - Bottom */}
+          <div className="border-t border-gray-800 pt-8 mt-8">
+            <div className="flex flex-col items-center justify-center text-center">
+              <Link to="/" className="inline-block group">
+                <div className="flex-shrink-0 relative">
+                  <div className="absolute inset-0 bg-blue-600 rounded-xl blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                  <div className="relative z-10 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-md border-2 border-gray-200 dark:border-gray-700 group-hover:border-blue-400 dark:group-hover:border-blue-500 transition-all">
+                    <Logo className="h-10 w-10" />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
 

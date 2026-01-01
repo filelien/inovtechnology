@@ -21,12 +21,23 @@ function App() {
     <ThemeProvider>
       <LanguageProvider>
         <BrowserRouter>
-          <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-gray-900 text-gray-900 dark:text-white transition-colors duration-300 text-base md:text-lg relative">
-            {/* Background decorative gradient shapes */}
-            <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-              <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-400/20 via-purple-400/10 to-transparent rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4"></div>
-              <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-gradient-to-tr from-purple-400/20 via-blue-400/10 to-transparent rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4"></div>
-              <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-400/10 via-blue-400/10 to-purple-400/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-gray-900 dark:text-white transition-colors duration-300 text-base md:text-lg relative">
+            {/* Pattern de carreaux avec bordures épaisses en arrière-plan */}
+            <div className="fixed inset-0 -z-10 opacity-100 pointer-events-none">
+              <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="checkerboard-pattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+                    <rect x="3" y="3" width="54" height="54" fill="#d1d5db" stroke="#9ca3af" strokeWidth="3"/>
+                    <rect x="63" y="63" width="54" height="54" fill="#d1d5db" stroke="#9ca3af" strokeWidth="3"/>
+                  </pattern>
+                  <pattern id="checkerboard-pattern-dark" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+                    <rect x="3" y="3" width="54" height="54" fill="#4b5563" stroke="#6b7280" strokeWidth="3"/>
+                    <rect x="63" y="63" width="54" height="54" fill="#4b5563" stroke="#6b7280" strokeWidth="3"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#checkerboard-pattern)" className="opacity-[0.12] dark:hidden"/>
+                <rect width="100%" height="100%" fill="url(#checkerboard-pattern-dark)" className="hidden dark:block opacity-[0.1]"/>
+              </svg>
             </div>
             <Navbar />
             <Routes>

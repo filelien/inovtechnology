@@ -7,13 +7,24 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <div className="pt-20 bg-gradient-to-br from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative overflow-hidden">
-      {/* Background decorative gradient shapes */}
-      <div className="absolute inset-0 opacity-20 dark:opacity-10">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/40 via-purple-400/30 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-purple-400/40 via-blue-400/30 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-cyan-400/30 via-blue-400/20 to-purple-400/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2 animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
-      </div>
+        <div className="pt-20 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors relative overflow-hidden">
+          {/* Pattern de carreaux avec bordures épaisses */}
+          <div className="absolute inset-0 opacity-100 pointer-events-none">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="hero-checkerboard" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+                  <rect x="3" y="3" width="54" height="54" fill="#d1d5db" stroke="#9ca3af" strokeWidth="3"/>
+                  <rect x="63" y="63" width="54" height="54" fill="#d1d5db" stroke="#9ca3af" strokeWidth="3"/>
+                </pattern>
+                <pattern id="hero-checkerboard-dark" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+                  <rect x="3" y="3" width="54" height="54" fill="#4b5563" stroke="#6b7280" strokeWidth="3"/>
+                  <rect x="63" y="63" width="54" height="54" fill="#4b5563" stroke="#6b7280" strokeWidth="3"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#hero-checkerboard)" className="opacity-[0.1] dark:hidden"/>
+              <rect width="100%" height="100%" fill="url(#hero-checkerboard-dark)" className="hidden dark:block opacity-[0.085]"/>
+            </svg>
+          </div>
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 py-24 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
@@ -64,7 +75,7 @@ export default function Hero() {
           </div>
 
           <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 duration-300 border border-gray-100 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-double hover:shadow-double-hover transition transform hover:-translate-y-1 duration-300 border border-gray-200/50 dark:border-gray-700/50">
               <Code className="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" />
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('hero.webMobile')}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">{t('hero.webMobileDesc')}</p>
@@ -76,7 +87,7 @@ export default function Hero() {
               <p className="text-sm text-gray-600 dark:text-gray-300">{t('hero.dataBiDesc')}</p>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 duration-300 border border-gray-100 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-double hover:shadow-double-hover transition transform hover:-translate-y-1 duration-300 border border-gray-200/50 dark:border-gray-700/50">
               <Cloud className="h-12 w-12 text-purple-600 dark:text-purple-400 mb-4" />
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('hero.cloud')}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">{t('hero.cloudDesc')}</p>

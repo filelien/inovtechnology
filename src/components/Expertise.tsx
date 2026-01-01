@@ -92,7 +92,7 @@ export default function Expertise() {
             return (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-double hover:shadow-double-hover transition-all duration-300 overflow-hidden transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50"
               >
                 <div className={`bg-gradient-to-br ${colorClasses[area.color as keyof typeof colorClasses]} p-6`}>
                   <Icon className="h-12 w-12 text-white mb-4" />
@@ -126,7 +126,7 @@ export default function Expertise() {
           })}
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-double p-8 md:p-12 border border-gray-200/50 dark:border-gray-700/50">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
               <p className="text-4xl font-bold text-blue-600 dark:text-blue-400">500+</p>
