@@ -1349,12 +1349,12 @@ const translations: Translations = {
     ar: 'الشهادات: Oracle, AWS, Azure, ISO 27001, CISSP, CKA'
   },
   'footer.copyright': {
-    fr: '© 2025 INOV TECHNOLOGY. Tous droits réservés. | 15+ ans d\'excellence IT en Afrique et dans le monde',
-    en: '© 2025 INOV TECHNOLOGY. All rights reserved. | 15+ years of IT excellence in Africa and worldwide',
-    es: '© 2025 INOV TECHNOLOGY. Todos los derechos reservados. | 15+ años de excelencia IT en África y en el mundo',
-    pt: '© 2025 INOV TECHNOLOGY. Todos os direitos reservados. | 15+ anos de excelência IT na África e no mundo',
-    ar: '© 2025 INOV TECHNOLOGY. جميع الحقوق محفوظة. | 15+ سنة من التميز في تكنولوجيا المعلومات في أفريقيا والعالم'
-  },
+    fr: '© 2026 INOV TECHNOLOGY. Tous droits réservés. | 15+ ans d\'excellence IT en Afrique et dans le monde',
+    en: '© 2026 INOV TECHNOLOGY. All rights reserved. | 15+ years of IT excellence in Africa and worldwide',
+    es: '© 2026 INOV TECHNOLOGY. Todos los derechos reservados. | 15+ años de excelencia IT en África y en el mundo',
+    pt: '© 2026 INOV TECHNOLOGY. Todos os direitos reservados. | 15+ anos de excelência IT na África e no mundo',
+    ar: '© 2026 INOV TECHNOLOGY. جميع الحقوق محفوظة. | 15+ سنة من التميز في تكنولوجيا المعلومات في أفريقيا والعالم'
+  },  
   'footer.selectLanguage': {
     fr: 'Choisir la langue',
     en: 'Select language',
